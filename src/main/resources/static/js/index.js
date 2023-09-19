@@ -41,3 +41,25 @@ function displayUsers(userList, userListElement) {
 
 // Call the loadAndDisplayUsers function when the page loads
 window.addEventListener("load", loadAndDisplayUsers);
+
+function handleNewMeeting() {
+    const connectedUser = JSON.parse(localStorage.getItem('connectedUser'));
+    window.open(`video_call.html?username=${connectedUser.username}`, "_blank");
+}
+
+// Attach the handleNewMeeting function to the "Create a New Meeting" button
+const newMeetingBtn = document.getElementById("newMeetingBtn");
+newMeetingBtn.addEventListener("click", handleNewMeeting);
+
+
+function handleJoinMeeting() {
+    const roomId = document.getElementById("meetingName").value;
+    const connectedUser = JSON.parse(localStorage.getItem('connectedUser'));
+
+    const url = `video_call.html?roomID=${roomId}&username=${connectedUser.username}`;
+
+    window.open(url, "_blank");
+}
+
+const joinMeetingBtn = document.getElementById("joinMeetingBtn");
+joinMeetingBtn.addEventListener("click", handleJoinMeeting);
