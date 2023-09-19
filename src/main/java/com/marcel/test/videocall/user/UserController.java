@@ -24,12 +24,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public User login(User user){
+    public User login(@RequestBody User user){
         return service.login(user);
     }
 
     @PostMapping("/logout")
-    public void logout(String email){
+    public void logout(@RequestBody String email){
         service.logout(email);
     }
 
