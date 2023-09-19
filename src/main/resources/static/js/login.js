@@ -40,3 +40,23 @@ function handleLogin(event) {
 
 const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit",handleLogin);
+
+function handleLogout() {
+    fetch('http://localhost:8080/api/v1/users/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: localStorage.getItem('connectedUser')
+    })
+        .then((response) => {
+            return response;
+        })
+        .then((data) => {
+            localStorage.removeItem('connectedUser');
+            window.location.href = "login.html";
+        });
+}
+
+const logoutBtn = document.getElementById("logoutBtn");
+logoutBtn.addEventListener("click", handleLogout);
